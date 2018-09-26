@@ -11,11 +11,19 @@ let sec = date.getSeconds();
 
 console.log("Hour: " + hr + " Minute: " + min + " Second: " + sec);
 
-hrPosition = (hr*360/60) + (min*(360/60)/12);
+hrPosition = (hr*360/12) + (min*(360/60)/12);
 minPosition = (min*360/60) + (sec*(360/60)/60);
 secPosition = sec*360/60;
 
-HOURHAND.style.transform = "rotate(" + hrPosition + "deg)";
-MINUTEHAND.style.transform = "rotate(" + minPosition + "deg)";
-SECONDHAND.style.transform = "rotate(" + secPosition + "deg)";
+function runTheClock() { 
+	
+	hrPosition += (3/360);
+	minPosition += (6/60);
+	secPosition += 6; 	
 
+	HOURHAND.style.transform = "rotate(" + hrPosition + "deg)";
+	MINUTEHAND.style.transform = "rotate(" + minPosition + "deg)";
+	SECONDHAND.style.transform = "rotate(" + secPosition + "deg)";
+}
+
+var interval = setInterval(runTheClock, 1000);
